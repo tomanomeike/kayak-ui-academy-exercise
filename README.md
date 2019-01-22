@@ -1,1 +1,1 @@
-# kayak-ui-academy-excercise
+# kayak-ui-academy-exercise
