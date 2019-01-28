@@ -1,22 +1,26 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/index.js')
+    main: [path.resolve(__dirname, './src/client/index.js'), 'webpack-hot-middleware/client']
   },
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules\/(?!((@ot-react-ui))\/).*/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
         }
       },
       {
@@ -46,11 +50,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,
-      template: './src/index.html',
+      template: './src/client/index.html',
       filename: 'index.html'
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  ]
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ],
+  cache: true
 };

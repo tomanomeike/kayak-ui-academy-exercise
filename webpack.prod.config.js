@@ -4,14 +4,13 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
+const clientConfig = {
   entry: {
-    main: path.resolve(__dirname, './src/index.js')
+    main: path.resolve(__dirname, './src/client/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].js',
-    libraryTarget: 'commonjs2'
+    filename: 'index.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -60,10 +59,64 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin('dist', {}),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css'
+      filename: 'styles.css'
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ]
 };
+
+const serverConfig = {
+  entry: {
+    server: path.resolve(__dirname, './src/server/index.js')
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'server.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  target: 'node',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules\/(?!((@ot-react-ui))\/).*/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        loader: 'svg-react-loader'
+      }
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles.css'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
+  ]
+};
+
+module.exports = [clientConfig, serverConfig];
