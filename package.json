@@ -1,10 +1,10 @@
 {
   "name": "kayak-ui-academy-excercise",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sukurkite paieškos _autocomplete_ komponentą, naudodami `ReactJS` biblioteką, kurio pagalba vartotojas galės pasirinkti kino filmą iš įvestos frazės atitikmenų. Paieškos komponentas turi bendrauti su filmų informacijos API.",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=dev nodemon --exec babel-node --watch src/server src/server/dev",
+    "start": "nodemon --exec babel-node --watch src/server src/server/dev",
     "start:prod": "node dist/server",
     "build": "NODE_ENV=prod webpack --mode=production",
     "test": "jest",
@@ -25,6 +25,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "check-dependencies": "^1.1.0",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
     "enzyme": "^3.7.0",
@@ -62,5 +63,16 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomanomeike/kayak-ui-academy-exercise.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tomanomeike/kayak-ui-academy-exercise/issues"
+  },
+  "homepage": "https://github.com/tomanomeike/kayak-ui-academy-exercise#readme"
 }
