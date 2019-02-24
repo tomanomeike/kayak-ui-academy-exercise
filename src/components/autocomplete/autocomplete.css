@@ -1,2 +1,30 @@
 .container {
+    background-color: #6887b4;
+    width: 96%;
+    height: 100%;
+}
+.wrapper{
+    width: 90%;
+    background-color: white;
+    height: 100%;
+    margin: 0 5% 0 5%;
+}
+.menu{
+    background-image: linear-gradient(to right, #fa6a23, #f55f24, #f05325, #ea4626, #e43927);
+}
+input{
+    width: 90%;
+    background-image: linear-gradient(to right, #fb884f, #f77f4f, #f37550, #ef6c51, #ea6352);
+    margin: 0 5% 0 5%;
+
+}
+::placeholder {
+    color: #ffffff;
+    opacity: 1;
+    font-size: 16px;
+    pading: 4px;
+}
+.search{
+    color: black;
+    font-size: 20px;
 }

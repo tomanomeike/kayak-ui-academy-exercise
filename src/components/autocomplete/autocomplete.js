@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import styles from './autocomplete.css';
 
+
 class Autocomplete extends Component {
   constructor(props) {
     super(props);
@@ -46,9 +47,20 @@ class Autocomplete extends Component {
   }
   render() {
     return (
+
       <div className={styles.container}>
-        <input onChange={this.searchChangeHandler.bind(this)} placeholder="Search..." />
-        {this.state.rows}
+        <div className={styles.wrapper}>
+          <div className={styles.menu}>
+            <div className={styles.logo}>
+                <img src="film.png"/>
+            </div>
+            <input onChange={this.searchChangeHandler.bind(this)} placeholder="Enter movie name" />
+            <div className={styles.search}>
+              <img width="20px" src="search.png" />
+            </div>
+            {this.state.rows}
+          </div>
+        </div>
       </div>
     );
   }
