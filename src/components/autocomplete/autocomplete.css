@@ -10,13 +10,15 @@
     margin: 0 5% 0 5%;
 }
 .menu{
+    display: flex;
+    flex-direction: row;
     background-image: linear-gradient(to right, #fa6a23, #f55f24, #f05325, #ea4626, #e43927);
+    height: 4rem;
 }
 input{
     width: 90%;
     background-image: linear-gradient(to right, #fb884f, #f77f4f, #f37550, #ef6c51, #ea6352);
-    margin: 0 5% 0 5%;
-
+    margin:1% 5%;
 }
 ::placeholder {
     color: #ffffff;
