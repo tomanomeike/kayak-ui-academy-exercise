@@ -53,6 +53,17 @@ const clientConfig = {
         test: /\.svg$/,
         exclude: /node_modules/,
         loader: 'svg-react-loader'
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },

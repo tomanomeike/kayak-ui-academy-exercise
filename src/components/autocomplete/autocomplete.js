@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
 import $ from 'jquery';
 import styles from './autocomplete.css';
+import film1 from './images/film1.png';
+import search from './images/search.png';
 
 class Autocomplete extends Component {
   constructor(props) {
@@ -26,14 +27,10 @@ class Autocomplete extends Component {
 
         const movieRows = [];
         results.forEach(movie => {
-          movieRows.push(
-            <table>
-              <h3 key={movie.id}>{movie.title}</h3>
-            </table>
-          );
+          movieRows.push(<h3 key={movie.id}>{movie.title}</h3>);
         });
         this.state = { movieRows };
-        this.setState({ rows: movieRows });
+        this.setState({ rows: movieRows.slice(0, 8) });
       },
       error: (xhr, status, err) => {
         console.error('failed');
@@ -53,12 +50,9 @@ class Autocomplete extends Component {
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.menu}>
-            <div className={styles.logo}>
-              <img width="50" src="search.png" />
-            </div>
+            <div className={styles.film}>{<img width="45" src={film1} />}</div>
             <input onChange={this.searchChangeHandler.bind(this)} placeholder="Enter movie name" />
-
-            <div className={styles.search}>{<img width="50" src="search.png" />}</div>
+            <div className={styles.search}>{<img width="30" src={search} />}</div>
           </div>
           {this.state.rows}
         </div>
